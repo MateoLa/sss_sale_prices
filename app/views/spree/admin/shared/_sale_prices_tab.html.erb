@@ -1,0 +1,4 @@
+<%= content_tag :li, :id => 'sale_prices_tab' do %>
+	<%= link_to_with_icon 'money', Spree.t(:product_sale_prices), admin_product_sale_prices_path(@product),
+		class: "nav-link #{'active' if current == :sale_prices}" %>
+<% end %>

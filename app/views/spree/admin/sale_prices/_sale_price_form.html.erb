@@ -1,0 +1,61 @@
+<div class="card-header">
+  <h1 class="card-title mb-0 h5">
+    <%= Spree.t('add_product_sale_prices') %>
+  </h1>
+</div>
+
+
+<div class="card-body">
+  <%= form_for [:admin, @product, Spree::SalePrice.new], remote: true do |f| %>
+    <div data-hook="admin_product_sale_price_fields" class="row">
+      <div class="col-12">
+        <div class="form-group text-center">
+          <%= f.field_container '' do %>
+            <%= f.label :price, Spree.t('original_price') %>
+            <%= f.text_field :price, value: @product.original_price.to_f, disabled: true %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <%= f.field_container :value do %>
+            <%= f.label :value, Spree.t('sale_price_amount') %>
+            <%= f.text_field :value, class: 'form-control' %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-lg-6">
+        <div class="form-group">
+          <%= f.field_container :currency do %>
+            <%= f.label :currency, Spree.t('sale_price_currency') %>
+            <%= f.select :currency, options_for_select(supported_currencies_for_sale_price), class: 'select2' %>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="col-12 col-lg-4">
+        <div class="form-group">
+          <%= f.field_container :value do %>
+            <%= f.label :start_at, Spree.t('sale_price_start_at') %>
+            <%= f.text_field :start_at, class: "datepicker" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4">
+        <div class="form-group">
+          <%= f.field_container :currency do %>
+            <%= f.label :end_at, Spree.t('sale_price_end_at') %>
+            <%= f.text_field :end_at, class: "datepicker" %>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-12 col-lg-4 d-flex flex-column justify-content-end">
+        <div class="form-group" data-hook="buttons">
+          <%= button Spree.t(:add_sale_price), 'plus' %>
+        </div>
+      </div>
+
+    </div>
+  <% end %>
+</div>

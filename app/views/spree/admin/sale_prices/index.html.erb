@@ -1,0 +1,9 @@
+<%= render partial: "spree/admin/shared/product_tabs", locals: {current: :sale_prices} %>
+
+<% if can? :create, Spree::SalePrice %>
+  <div id="add_sale_price" class="card mb-3">
+    <%= render partial: "sale_price_form" %>
+  </div>
+<% end %>
+
+<%= render partial: "table", locals: {product: @product} %>
